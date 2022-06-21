@@ -15,16 +15,19 @@ namespace Microsoft.eShopWeb.ApplicationCore.Services
         private readonly IUriComposer _uriComposer;
         private readonly IRepository<Basket> _basketRepository;
         private readonly IRepository<CatalogItem> _itemRepository;
+        private readonly IOrderSenderService _orderSenderService;
 
         public OrderService(IRepository<Basket> basketRepository,
             IRepository<CatalogItem> itemRepository,
             IRepository<Order> orderRepository,
-            IUriComposer uriComposer)
+            IUriComposer uriComposer,
+            IOrderSenderService orderSenderService)
         {
             _orderRepository = orderRepository;
             _uriComposer = uriComposer;
             _basketRepository = basketRepository;
             _itemRepository = itemRepository;
+            _orderSenderService = orderSenderService;
         }
 
         public async Task CreateOrderAsync(int basketId, Address shippingAddress)
@@ -49,6 +52,7 @@ namespace Microsoft.eShopWeb.ApplicationCore.Services
             var order = new Order(basket.BuyerId, shippingAddress, items);
 
             await _orderRepository.AddAsync(order);
+            await _orderSenderService.Process(order);
         }
     }
 }

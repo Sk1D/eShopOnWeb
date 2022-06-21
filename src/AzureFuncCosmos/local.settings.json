@@ -1,0 +1,11 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "CosmosDbEndpointUrl": "https://myeshopcosmosdbacc.documents.azure.com:443/",
+    "CosmosDbAuthorizationKey": "PT9BYppsWbnOWAktE20AzSCRdhIIvJxm9viFaNjkUpk4xPN1dn9Z4n8ZXtN5rEww04MHCiRH8ck2nzKBAX5N5g==",
+    "CosmosDbName": "eShopDatabase",
+    "CosmosDbContainer": "eShopContainer"
+  }
+}

@@ -16,8 +16,13 @@ using Microsoft.eShopWeb.Web;
 using Microsoft.eShopWeb.Web.Configuration;
 using Microsoft.eShopWeb.Web.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Azure.Identity;
+using Microsoft.eShopWeb.ApplicationCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("MyVaultUri"));
+//builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 builder.Logging.AddConsole();
 
@@ -73,6 +78,9 @@ builder.Services.Configure<ServiceConfig>(config =>
     config.Services = new List<ServiceDescriptor>(builder.Services);
     config.Path = "/allservices";
 });
+
+// azure func configuration
+builder.Services.AddHttpClient<IOrderSenderService, OrderSenderService>();
 
 // blazor configuration
 var configSection = builder.Configuration.GetRequiredSection(BaseUrlConfiguration.CONFIG_NAME);
@@ -172,6 +180,7 @@ using (var scope = app.Services.CreateScope())
 
         var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //var identityContext = scopedProvider.GetRequiredService<AppIdentityDbContext>();
         await AppIdentityDbContextSeed.SeedAsync(userManager, roleManager);
     }
     catch (Exception ex)

@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=storageeshopeacc;AccountKey=6uJ9o4RSgSGkH3FjrOn+9ze9RmljaTtBKTvMnCUMcyr6eiFQvZH/hFa05SQgt5eNvA256S6HWJD3+ASt2o/QuQ==;EndpointSuffix=core.windows.net", //"UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ServiceBusConnection": "Endpoint=sb://eshopsbus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Ly0EJdGtt/G04lFSfYpWLs+2+pPCiiDHVri+At9rGXI=",
+    "QueueName": "orderQueue",
+    "ContainerName": "ordercontainer",
+    "LogicAppUrl": "https://prod-03.eastus2.logic.azure.com:443/workflows/4ea703266eaa4a52ad61c6969eb009b7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=s8Z8jJTKJa7xyG-SMxW7LgrLSAyDDJXtxjYNJa3DNwo"
+  }
+}
